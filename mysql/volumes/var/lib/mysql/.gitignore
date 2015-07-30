@@ -1,0 +1,5 @@
+# placeholder in order to have the directory structure in git.
+# and to ignore anything below.
+*/*
+*
+!.gitignore

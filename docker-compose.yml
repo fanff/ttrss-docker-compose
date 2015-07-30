@@ -1,0 +1,32 @@
+ttrss:
+  image: clue/ttrss
+  restart: always
+  # ports:
+  #   - "8000:80"
+  links:
+    - tinydatabase:db
+  environment:
+    VIRTUAL_HOST: myhost.mydomain
+    DB_ENV_USER: root
+    DB_ENV_PASS: rootpass
+
+tinydatabase:
+  # https://registry.hub.docker.com/_/mysql/
+  image: mysql:latest
+  restart: always
+  mem_limit: 128m
+  expose:
+     - "3306"
+  # ports:
+  #    - "3307:3306"
+  environment:
+    MYSQL_DATABASE: ttrss-dummy
+    MYSQL_ROOT_PASSWORD: rootpass
+    MYSQL_USER: user
+    MYSQL_PASSWORD: userpass
+  volumes:
+    - mysql/volumes/var/lib/mysql:/var/lib/mysql
+
+  # --skip-name-resolve
+  # avoids: ""[Warning] IP address '172.17.0.60' could not be resolved: Name or service not known""
+  command: mysqld --skip-name-resolve
