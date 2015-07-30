@@ -33,14 +33,17 @@ Modify Docker-Compose
 - currently configured and tested to be used with MySQL.
 
 - local testing:
+
   - uncomment "ports 8000:80" lines
 
 - behind nginx-proxy
+
   - configure ``VIRTUAL_HOST`` setting.
 
 - mem_limit setting for MySQL: remove or change according to your environment.
 
 - set your own passwords for MySQL:
+
   - in TT-RSS: DB_ENV_PASS
   - in MySQL: MYSQL_ROOT_PASSWORD
 
