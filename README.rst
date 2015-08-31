@@ -68,6 +68,10 @@ Due to TT-RSS using its own database setup, we need to initialize a dummy databa
      mysql:latest
 
 
+Note on MySQL memory setting: In my initial installation with 128MB of RAM for MySQL, it was running out of RAM which lead to errors.
+I had to increase the RAM setting to 192MB (for now). Contributions for limiting MySQL RAM usage configs are welcome.
+
+
 Startup
 -------
 
