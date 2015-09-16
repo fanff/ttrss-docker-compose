@@ -25,7 +25,8 @@ tinydatabase:
     MYSQL_USER: user
     MYSQL_PASSWORD: userpass
   volumes:
-    - mysql/volumes/var/lib/mysql:/var/lib/mysql
+    - ./mysql/volumes/var/lib/mysql:/var/lib/mysql
+    - ./mysql/volumes/etc/mysql/conf.d:/etc/mysql/conf.d
 
   # --skip-name-resolve
   # avoids: ""[Warning] IP address '172.17.0.60' could not be resolved: Name or service not known""

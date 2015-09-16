@@ -13,12 +13,15 @@ Uses the Dockerimage clue/ttrss provided by https://github.com/clue/docker-ttrss
 Filesystem layout
 -----------------
 
-By using docker-volumes, this setup holds the database files in the host filesystem.
+By using docker-volumes, this setup holds the database files and an override-file for mysql.cnf in the host filesystem.
 
 ::
 
   mysql
     +--volumes
+       +--etc
+          +--myslq
+             +--conf.d -> mounted to /etc/mysql/conf.d
        +--var
           +--lib
              +--mysql  -> mounted to /var/lib/mysql
@@ -64,12 +67,13 @@ Due to TT-RSS using its own database setup, we need to initialize a dummy databa
      --env='MYSQL_USER=user' \
      --env='MYSQL_PASSWORD=userpass' \
      -v <path-to->/mysql/volumes/var/lib/mysql:/var/lib/mysql \
+     -v <path-to->/mysql/volumes/etc/mysql/conf.d:/etc/mysql/conf.d \
      -p 3307:3306 \
      mysql:latest
 
 
-Note on MySQL memory setting: In my initial installation with 128MB of RAM for MySQL, it was running out of RAM which lead to errors.
-I had to increase the RAM setting to 192MB (for now). Contributions for limiting MySQL RAM usage configs are welcome.
+Note on MySQL memory setting: In the initial installation with 128MB of RAM for MySQL, the database was running out of memory after a while, leading to errors.
+I had to increase the RAM setting to 192MB (for now) and add an override configuration in /etc/mysql/conf.d to reduce memory requirements.
 
 
 Startup
