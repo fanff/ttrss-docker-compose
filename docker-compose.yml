@@ -14,12 +14,13 @@ services:
       VIRTUAL_HOST: myhost.mydomain
       DB_ENV_USER: root
       DB_ENV_PASS: rootpass
+      DB_PORT: 3306
+      DB_HOST: db
   
   tinydatabase:
     # https://registry.hub.docker.com/_/mysql/
     image: mysql:latest
     restart: always
-    mem_limit: 192m
     expose:
        - "3306"
     # ports:
